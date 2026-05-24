@@ -620,7 +620,7 @@
 </main>
 
 <script>
-fetch('https://hits.sh/anotherme13.github.io/introduction/greeting.html.json')
+fetch('https://api.counterapi.dev/v1/anotherme13/visits/up')
   .then(r => r.json())
   .then(d => { document.getElementById('vc').textContent = d.count; })
   .catch(() => { document.getElementById('vc').textContent = '--'; });
