@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,6 @@
     cursor: crosshair;
   }
 
-  /* SCANLINE */
   body::before {
     content: '';
     position: fixed;
@@ -43,7 +43,6 @@
     z-index: 1000;
   }
 
-  /* GRID BG */
   .grid-bg {
     position: fixed;
     inset: 0;
@@ -83,7 +82,6 @@
     z-index: 998;
   }
 
-  /* LAYOUT */
   main {
     position: relative;
     z-index: 10;
@@ -92,7 +90,6 @@
     padding: 80px 40px 120px;
   }
 
-  /* HERO */
   .hero {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -128,9 +125,7 @@
     animation: fadeUp 0.7s 0.2s ease both;
     white-space: nowrap;
   }
-  .hero-name span {
-    color: var(--accent);
-  }
+  .hero-name span { color: var(--accent); }
 
   .hero-handle {
     font-family: 'Share Tech Mono', monospace;
@@ -169,7 +164,6 @@
     border-style: solid;
   }
 
-  /* BIO */
   .bio {
     max-width: 600px;
     font-size: 16px;
@@ -183,7 +177,6 @@
   }
   .bio strong { color: var(--text); font-weight: 700; }
 
-  /* SECTION HEADER */
   .section-header {
     display: flex;
     align-items: center;
@@ -207,7 +200,6 @@
     background: var(--border);
   }
 
-  /* PROJECT WINDOWS GRID */
   .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -216,7 +208,6 @@
     animation: fadeUp 0.8s 0.7s ease both;
   }
 
-  /* WINDOW CARD */
   .project-card {
     display: flex;
     flex-direction: column;
@@ -239,7 +230,6 @@
   }
   .project-card:active { transform: translateY(-3px) scale(0.98); }
 
-  /* Glow overlay on hover */
   .project-card::after {
     content: '';
     position: absolute;
@@ -251,7 +241,6 @@
   }
   .project-card:hover::after { opacity: 1; }
 
-  /* TITLE BAR */
   .win-titlebar {
     display: flex;
     align-items: center;
@@ -262,10 +251,7 @@
     flex-shrink: 0;
   }
 
-  .win-dots {
-    display: flex;
-    gap: 6px;
-  }
+  .win-dots { display: flex; gap: 6px; }
   .win-dot {
     width: 11px;
     height: 11px;
@@ -294,7 +280,6 @@
     color: var(--border);
   }
 
-  /* WINDOW BODY */
   .win-body {
     flex: 1;
     padding: 20px 20px 22px;
@@ -346,7 +331,6 @@
     transform: translate(3px, -3px);
   }
 
-  /* ACCENT BAR at bottom */
   .win-accent-bar {
     height: 3px;
     width: 100%;
@@ -356,7 +340,6 @@
   }
   .project-card:hover .win-accent-bar { opacity: 1; }
 
-  /* FOOTER */
   footer {
     margin-top: 90px;
     padding-top: 28px;
@@ -379,7 +362,6 @@
   }
   .footer-links a:hover { color: var(--accent); }
 
-  /* RIPPLE */
   .ripple {
     position: fixed;
     border-radius: 50%;
@@ -575,13 +557,37 @@
       </div>
       <div class="win-body">
         <div class="card-title">HackMD — @lovelyboyy</div>
-        <div class="card-desc">Some other works & write-ups. Notes, research, and findings published along the way.</div>
+        <div class="card-desc">Some other works &amp; write-ups. Notes, research, and findings published along the way.</div>
         <div class="card-footer">
           <span class="card-lang">Write-ups</span>
           <span class="card-arrow">↗</span>
         </div>
       </div>
       <div class="win-accent-bar" style="background: linear-gradient(90deg, #00d4aa, transparent);"></div>
+    </a>
+
+    <a class="project-card"
+       href="https://hackmd.io/ezWKxz9BRquI6SJyxsqkAA"
+       target="_blank"
+       data-color="#00ffc3">
+      <div class="win-titlebar">
+        <div class="win-dots">
+          <div class="win-dot red"></div>
+          <div class="win-dot yellow"></div>
+          <div class="win-dot green"></div>
+        </div>
+        <span class="win-title-text">ARM64 exploring</span>
+        <span class="win-index">07</span>
+      </div>
+      <div class="win-body">
+        <div class="card-title">ARM64 exploring</div>
+        <div class="card-desc">Learning AArch64 from pwnable challenges — calling convention, stack frame, instructions, protection &amp; obfuscation mechanisms.</div>
+        <div class="card-footer">
+          <span class="card-lang">Pwn / RE</span>
+          <span class="card-arrow">↗</span>
+        </div>
+      </div>
+      <div class="win-accent-bar" style="background: linear-gradient(90deg, #00ffc3, transparent);"></div>
     </a>
 
   </div>
@@ -654,15 +660,15 @@ class HexParticle {
     ctx.save();
     ctx.globalAlpha = Math.max(0, this.alpha);
     if (this.distTravelled !== undefined) {
-      const target = Math.min(W, H) * 0.1;             // ~1/10 screen
+      const target = Math.min(W, H) * 0.1;
       const t = Math.min(this.distTravelled / target, 1);
       const size = this.baseFontSize + t * 28;
-      const blur = t * t * 50;                          // blur accelerates toward the end
+      const blur = t * t * 50;
       ctx.font = `bold ${size}px 'Share Tech Mono', monospace`;
       ctx.fillStyle = this.color;
       ctx.shadowColor = this.color;
       ctx.shadowBlur = 4 + blur;
-      ctx.globalAlpha = Math.max(0, this.alpha * (1 - t * t * 0.98)); // stays visible until near end
+      ctx.globalAlpha = Math.max(0, this.alpha * (1 - t * t * 0.98));
     } else {
       ctx.font = `bold ${this.fontSize}px 'Share Tech Mono', monospace`;
       ctx.fillStyle = this.color;
@@ -682,7 +688,6 @@ function spawnBurst(x, y, color, count) {
   }
 }
 
-// Cursor trail state
 let mouseX = null, mouseY = null;
 let trailTick = 0;
 
@@ -691,23 +696,18 @@ document.addEventListener('mousemove', function(e) {
   mouseY = e.clientY;
 });
 
-// Main loop
 function loop() {
   ctx.clearRect(0, 0, W, H);
-
-  // emit trail particle every 3 frames whenever mouse has moved
   trailTick++;
   if (trailTick % 40 === 0 && mouseX !== null) {
     particles.push(new HexParticle(mouseX, mouseY, '#00ffc3', true));
   }
-
   particles = particles.filter(p => !p.dead);
   particles.forEach(p => { p.update(); p.draw(); });
   requestAnimationFrame(loop);
 }
 loop();
 
-// Click interactions
 document.querySelectorAll('.project-card').forEach(function(card) {
   card.addEventListener('click', function(e) {
     const color = this.dataset.color || '#00ffc3';
@@ -728,7 +728,6 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Typewriter
 const label = document.querySelector('.hero-label');
 const txt = label.textContent;
 label.textContent = '';
